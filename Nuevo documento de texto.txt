@@ -1,0 +1,16 @@
+Evitar autoincremales en sentencias insert
+
+insert multiple
+
+INSERT INTO `datos`(`Nombre`, `Apellido`, `FechaNac`, `Nacionalidad`) VALUES ('Elnombre', 'Quemaslesguste','15/09/2017', 'Argentina') , ('Elnombre', 'chocho','13/09/2017', 'Argentina'), ('Elnombre', 'chicho','16/09/2017', 'Argentina')
+
+
+
+Ejercicios
+1)SELECT * FROM `productos` order by pNombre asc
+2)SELECT * FROM `proveedores` WHERE Localidad='Quilmes'
+3)SELECT * FROM `envios` WHERE Cantidad BETWEEN 200 and 300
+4)SELECT SUM(`Cantidad`) FROM `envios`
+5)SELECT `pNumero`FROM `envios` Limit 3
+6)SELECT pr.nombre,pd.pNombre FROM `envios` as e, `productos` as pd, `proveedores` as pr WHERE e.numero=pr.numero and e.pNumero=pd.pNumero
+7)SELECT e.cantidad*pd.precio as 'monto' FROM `envios`as e,`productos` as pd WHERE e.pNumero=pd.pNumero
