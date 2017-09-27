@@ -1,21 +1,17 @@
 <?php
-abstract class Persona
+class Persona
 {
-    private $_nombre;
-    private $_apellido;
-    private $_sexo;
+    public $nombre;
+    public $apellido;
+    public $dni;
 
-    function __construct($nombre, $apellido,$dni) //si seteo con valor o "" declara como opcional ese parametro (null={})
+    function __construct($nombre, $apellido="",$dni=0) //si seteo con valor o "" declara como opcional ese parametro (null={})
     {
-        $this->_nombre=$nombre;
-        $this->_apellido=$apellido;
-        $this->_sexo=$sexo;
+        $this->nombre=$nombre;
     }
 
-    public abstract function MostrarDatos();
 
-
-   /* function saludar()
+    function saludar()
     {
         echo "$this->nombre";
     }
@@ -23,6 +19,6 @@ abstract class Persona
     static function saludarDos()
     {
         echo"Hola2";
-    }*/
+    }
 }
 

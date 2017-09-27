@@ -1,12 +1,12 @@
 <?php
-include_once"./Clases/Persona.php";
+/*include_once"./Clases/Persona.php";
 include"./Clases/Policia.php";
 Persona::saludarDos();
 $persona=new Persona("tom");
 $persona->saludar();
 //Persona::saludar(); tira error por el this de la funcion de instancia accedido por la clase
 $persona->saludarDos();
-
+*/
 
 /*
 $a=9;$b=6;$c=8;
