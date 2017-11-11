@@ -1,3 +1,5 @@
+///<reference path="./Persona.ts"/>
+
 namespace People{
     export class Empleado extends Persona {
         profesion:string;

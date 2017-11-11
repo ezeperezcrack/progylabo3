@@ -1,5 +1,4 @@
-npm install --save @types/npm
-
+npm install --save @types/jquery
 
 funcionalidades para alta sheet "Agregar"
 baja columna "Acción" boton borrar borra el registro de esa fila
