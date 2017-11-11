@@ -1,0 +1,15 @@
+npm install --save @types/npm
+
+
+funcionalidades para alta sheet "Agregar"
+baja columna "Acción" boton borrar borra el registro de esa fila
+modificacion columna "Acción" plasma datos de esa fila al formulario y el boton guardar se cambia a modificar
+
+Sheet "Ver" -map: solo dba- -reduce: % de programadores- -filter: solo emails- de la tabla
+
+todas las altas se guardan en el localstorage como json
+
+
+
+
+
