@@ -21,3 +21,8 @@ apidoc -i apirest/(de donde lo toma) -o documentacion/documento/(donde lo genera
 
 //apidoc -i ElDirectorioDeLaApi/ -o documentacion/documento/ -t documentacion/template/
  
+
+CORS
+
+se habilitan por -middleware-(correcto) o por htaccess(suele habilitar todos ojo)
+
