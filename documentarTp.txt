@@ -1,0 +1,23 @@
+/**
+ * @api {get} /user/:id Request User information
+ * @apiName GetUser
+ * @apiGroup User
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ */
+
+Esto lo saque de apidoc
+Cada documentacion genera una pagina web
+
+ejecuta este comando:
+http://apidocjs.com/#getting-started
+
+npm install apidoc -g
+
+apidoc -i apirest/(de donde lo toma) -o documentacion/documento/(donde lo genera) -t documentacion/template/(customizacion de la pagina web)
+
+//apidoc -i ElDirectorioDeLaApi/ -o documentacion/documento/ -t documentacion/template/
+ 
