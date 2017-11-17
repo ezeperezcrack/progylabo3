@@ -2,6 +2,9 @@
 ///<reference path="./Empleado.ts"/>
 ///<reference path="./node_modules/@types/jquery/index.d.ts"/>
 $(document).ready(function(){
+    OcultarCarga("#form1");
+    OcultarCarga("#modif");
+    MakeActive("#mostrar")
     Inicio();
     TraerLista();
 });
@@ -19,12 +22,16 @@ var SoloDBA  = function(){
         }
     });
     let i;
-    $("#cuerpo").html("<tr></tr>");
-    let cuerpo = $("#cuerpo").html();
+    $("#tablita").html("<thead></thead>");
+    let cuerpo = $("#tablita").html();
+    cuerpo=cuerpo+"<thead><tr><th>Nombre</th><th>Apellido</th><th>Mail</th><th>Profesion</th></tr></thead><tbody>";
     for(i=0;i<libDBA.length;i++){
-        cuerpo = cuerpo + "<tr><td>"+libDBA[i].nombre+"</td><td>"+libDBA[i].apellido+ "</td><td>"+libDBA[i].email+"</td><td>"+libDBA[i].profesion+"</td><td>BOTONES PARA BORRAR</td></tr>";
+        cuerpo = cuerpo + "<tr><td>"+libDBA[i].nombre+"</td><td>"+libDBA[i].apellido+ "</td><td>"+libDBA[i].email+"</td><td>"+libDBA[i].profesion+"</td></tr>";
     }
-    $("#cuerpo").html(cuerpo);
+    cuerpo=cuerpo+"</tbody>";
+    $("#tablita").html(cuerpo);
+    MostrarCarga("#tablita");
+    OcultarCarga("#tabla");
 }
 
 var libMail = {};
@@ -34,12 +41,16 @@ var SoloMail = function(){
         return item.email;
     });
     let i;
-    $("#cuerpo").html("<tr></tr>");
-    let cuerpo = $("#cuerpo").html();
+    $("#tablita").html("<thead></thead>");
+    let cuerpo = $("#tablita").html();
+    cuerpo=cuerpo+"<thead><tr><th>Mail</th></tr></thead><tbody>";
     for(i=0;i<libMail.length;i++){
-        cuerpo = cuerpo + "<tr><td></td><td></td><td>"+libMail[i]+"</td><td></td><td>BOTONES PARA BORRAR</td></tr>";
+        cuerpo = cuerpo + "<tr><td>"+libMail[i]+"</td></tr>";
     }
-    $("#cuerpo").html(cuerpo);
+    cuerpo=cuerpo+"</tbody>";
+    $("#tablita").html(cuerpo);
+    MostrarCarga("#tablita");
+    OcultarCarga("#tabla");
 }
 
 var libProg;
@@ -53,7 +64,8 @@ var SoloProg = function(){
         return acum;
     },0);
     var porcentaje = libProg/datos.length;
-    console.log(porcentaje);
+    porcentaje=porcentaje*100;
+    console.log(porcentaje + "%");
 }
 
 
@@ -63,14 +75,16 @@ function TraerLista(){
     let ListaEmpleados=JSON.parse(localStorage.getItem("empleados"));
     let cuerpo = $("#cuerpo").html();
     for(i=0;i<ListaEmpleados.length;i++){
-        cuerpo = cuerpo + "<tr><td>"+ListaEmpleados[i].nombre+"</td><td>"+ListaEmpleados[i].apellido+ "</td><td>"+ListaEmpleados[i].email+"</td><td>"+ListaEmpleados[i].profesion+"</td><td><button onclick='eliminarPersona(" + i + ")' >Borrar</button></td><td><button onclick='modificarPersona(" + i + ")' >Modificar</button</td></tr>";
+        cuerpo = cuerpo + "<tr><td>"+ListaEmpleados[i].nombre+"</td><td>"+ListaEmpleados[i].apellido+ "</td><td>"+ListaEmpleados[i].email+"</td><td>"+ListaEmpleados[i].profesion+"</td><td><button id='borrar' onclick='eliminarPersona(" + i + ")' >Borrar</button><button id='modificar' onclick='MostrarCarga(form1), MakeInactive(mostrar), MakeInactive(Ver), MakeActive(agregar),modificarPersona(" + i + "), MostrarCarga(modif), OcultarCarga(cargar)' >Modificar</button</td></tr>";
     }
     $("#cuerpo").html(cuerpo);
+    MostrarCarga("#tabla");
+    OcultarCarga("#tablita");
 }
 function eliminarPersona(indice){
     let i;
     let ListaEmpleados=JSON.parse(localStorage.getItem("empleados"));
-    let newArray = Array();//:Array<People.Persona> = new Array<People.Persona>();
+    let newArray = Array();
     for(i=0;i<ListaEmpleados.length;i++){
         if(ListaEmpleados[indice]!=ListaEmpleados[i]){
             newArray.push(ListaEmpleados[i]);
@@ -110,4 +124,36 @@ function Guardar()
 
     localStorage.setItem("empleados",JSON.stringify(ListaEmpleados));
     TraerLista();
+    $("#form1")[0].reset();
 }
+
+function MostrarCarga(id){
+    $(id).show();
+}
+function OcultarCarga(id){
+    $(id).hide();
+}
+
+function MakeActive(id){
+    $(id).addClass("active");
+}
+
+function MakeInactive(id){
+    $(id).removeClass("active");
+}
+
+function Modif(){
+    let i=localStorage.getItem("indice");
+    let ListaEmpleados=JSON.parse(localStorage.getItem("empleados"));
+    var nombre:string = String($("#nom").val());
+    var email:string = String($("#email").val());
+    var apellido:string= String($("#ape").val());
+    var profesion:string = String($("#prof").val());
+    var empleado:People.Empleado = new People.Empleado(profesion,nombre,apellido,email);
+    ListaEmpleados[i]=empleado;
+    localStorage.setItem("empleados",JSON.stringify(ListaEmpleados));
+    TraerLista();
+
+    $("#form1")[0].reset();
+}
+

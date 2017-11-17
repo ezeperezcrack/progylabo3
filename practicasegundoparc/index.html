@@ -20,9 +20,9 @@
                     <a class="navbar-brand" href="#">Parcial 2</a>
                   </div>
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#" onclick="TraerLista()">Mostrar</a></li>
-                    <li><a href="#">Agregar</a></li>
-                    <li class="dropdown">
+                    <li id="mostrar"><a href="#" onclick="TraerLista(), OcultarCarga(form1), MakeInactive(Ver), MakeInactive(agregar),MakeActive(mostrar)">Mostrar</a></li>
+                    <li id="agregar" onclick="TraerLista(), MostrarCarga(form1), MakeInactive(mostrar), MakeInactive(Ver), MakeActive(agregar)"><a href="#">Agregar</a></li>
+                    <li id="Ver" onclick=" OcultarCarga(form1), MakeInactive(mostrar), MakeInactive(agregar), MakeActive(Ver)" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ver
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -33,11 +33,11 @@
                         </li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="./login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                   </ul>
                 </div>
               </nav>
-              <form>
+              <form id="form1">
                     
                   <div class="col-sm-4 col-lg-4">
                         <h2>Hover Rows</h2>
@@ -61,14 +61,15 @@
                               <option>diseñador</option>
                             </select>
                           </div>
-                    <button type="button" class="btn btn-default" onclick="Guardar()">Guardar</button>
+                    <button type="button" id="cargar" class="btn btn-default " onclick="Guardar()">Guardar</button>
+                    <button type="button" id="modif" class="btn btn-default" onclick="OcultarCarga(modif), MostrarCarga(cargar), Modif()">Modificar</button>
                     </div>
                 </form>
               <div >
               <div class="container col-sm-8 col-lg-7">
                     <h2>Hover Rows</h2>
                     <p>The .table-hover class enables a hover state on table rows:</p>            
-                    <table class="table table-hover">
+                    <table id="tabla" class="table table-hover">
                       <thead>
                         <tr>
                           <th>nombre</th>
@@ -81,6 +82,8 @@
                       <tbody id="cuerpo">
                       </tbody>
                     </table>
+                          <table id="tablita" class="table table-hover">
+                      </table>
                   </div>
               </div>
 </body>
